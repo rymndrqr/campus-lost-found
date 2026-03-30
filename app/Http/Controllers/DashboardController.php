@@ -1,23 +1,23 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\BorrowRecord;
-use App\Models\Member;
+use App\Models\LostItem;
+use App\Models\ClaimRecord;
+use App\Models\Reporter;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $totalBooks    = Book::count();
-        $totalMembers  = Member::count();
-        $activeBorrows = BorrowRecord::where('status', 'borrowed')->count();
-        $overdueCount  = BorrowRecord::where('status', 'overdue')->count();
-        $recentBorrows = BorrowRecord::with(['book', 'member'])
+$totalLostItems = LostItem::count();
+        $totalReporters  = Reporter::count();
+        $unclaimedCount  = LostItem::where('unclaimed', true)->count();
+        $pendingClaims   = ClaimRecord::where('status', 'reported')->count();
+        $recentClaims = ClaimRecord::with(['lostItem', 'reporter'])
                             ->latest()->take(5)->get();
 
         return view('dashboard', compact(
-            'totalBooks', 'totalMembers', 'activeBorrows', 'overdueCount', 'recentBorrows'
+            'totalLostItems', 'totalReporters', 'unclaimedCount', 'pendingClaims', 'recentClaims'
         ));
     }
 }

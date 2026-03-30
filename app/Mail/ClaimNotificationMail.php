@@ -1,30 +1,31 @@
 <?php
 namespace App\Mail;
 
-use App\Models\BorrowRecord;
+use App\Models\ClaimRecord;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class BorrowConfirmationMail extends Mailable
+class ClaimNotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public BorrowRecord $borrowRecord) {}
+    public function __construct(public ClaimRecord $claimRecord) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Book Borrowing Confirmation - Library System',
+            subject: 'New Claim Notification - Campus Lost & Found',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.borrow-confirmation',
+            markdown: 'emails.claim-notification',
         );
     }
 }
+?>

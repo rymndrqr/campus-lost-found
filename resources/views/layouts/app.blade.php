@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library System</title>
+<title>Campus Lost & Found System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
@@ -21,13 +21,13 @@
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-    <div class="brand">📚 Library System</div>
+🔍 Campus Lost & Found
     <div class="nav-section">Main Menu</div>
     <a href="{{ route('dashboard') }}"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
     <div class="nav-section">Modules</div>
-    <a href="{{ route('books.index') }}"><i class="bi bi-book me-2"></i> Books</a>
-    <a href="{{ route('members.index') }}"><i class="bi bi-people me-2"></i> Members</a>
-    <a href="{{ route('borrows.index') }}"><i class="bi bi-arrow-left-right me-2"></i> Borrowing</a>
+<a href="{{ route('lost-items.index') }}"><i class="bi bi-search me-2"></i> Lost Items</a>
+<a href="{{ route('reporters.index') }}"><i class="bi bi-person-check me-2"></i> Reporters</a>
+<a href="{{ route('claims.index') }}"><i class="bi bi-check-circle me-2"></i> Claims</a>
     <div class="nav-section">Reports</div>
     <a href="{{ route('reports.index') }}"><i class="bi bi-file-earmark-pdf me-2"></i> Reports</a>
     <div class="nav-section">Account</div>

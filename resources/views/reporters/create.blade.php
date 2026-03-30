@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<h4 class="mb-4">Add New Member</h4>
+<h4 class="mb-4">Add New Reporter</h4>
 <div class="card" style="max-width:600px;">
     <div class="card-body">
-        <form action="{{ route('members.store') }}" method="POST">
+        <form action="{{ route('reporters.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Full Name</label>
@@ -17,14 +17,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Phone Number</label>
-                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
+                @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Address</label>
-                <textarea name="address" class="form-control" rows="2">{{ old('address') }}</textarea>
+                <label class="form-label">Dorm/Building</label>
+                <input type="text" name="dorm" class="form-control" value="{{ old('dorm') }}">
             </div>
-            <button type="submit" class="btn btn-primary">Save Member</button>
-            <a href="{{ route('members.index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save Reporter</button>
+            <a href="{{ route('reporters.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </div>

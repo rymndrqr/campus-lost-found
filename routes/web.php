@@ -1,8 +1,8 @@
 <?php
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\LostItemController;
+use App\Http\Controllers\ClaimController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ReporterController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,16 +12,16 @@ Route::middleware('auth')->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Books CRUD
-    Route::resource('books', BookController::class)->except(['show']);
+    // Lost Items CRUD
+    Route::resource('lost-items', LostItemController::class)->except(['show']);
 
-    // Members CRUD
-    Route::resource('members', MemberController::class)->except(['show']);
+    // Reporters CRUD
+    Route::resource('reporters', ReporterController::class)->except(['show']);
 
-    // Borrow Transactions
-    Route::resource('borrows', BorrowController::class)->only(['index', 'create', 'store']);
-    Route::patch('borrows/{borrow}/return', [BorrowController::class, 'returnBook'])
-          ->name('borrows.return');
+    // Claims
+    Route::resource('claims', ClaimController::class)->only(['index', 'create', 'store']);
+    Route::patch('claims/{claim}/collect', [ClaimController::class, 'collectClaim'])
+          ->name('claims.collect');
 
     // Reports
     Route::get('reports', [ReportController::class, 'index'])->name('reports.index');

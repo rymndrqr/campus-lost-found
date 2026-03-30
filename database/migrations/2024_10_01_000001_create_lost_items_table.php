@@ -7,20 +7,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('lost_items', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('author');
-            $table->string('isbn')->unique();
+            $table->string('item_name');
+            $table->text('description');
             $table->string('category');
-            $table->integer('total_copies')->default(1);
-            $table->integer('available_copies')->default(1);
+            $table->string('location_found');
+            $table->date('date_found');
+            $table->boolean('unclaimed')->default(true);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('lost_items');
     }
 };
+?>

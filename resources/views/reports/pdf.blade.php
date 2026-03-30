@@ -18,17 +18,17 @@
     </style>
 </head>
 <body>
-    <h2>📚 Library Lending System</h2>
+<h2>🔍 Campus Lost & Found System</h2>
     <div class="subtitle">Borrow Records Report — Generated {{ now()->format('F d, Y') }}</div>
 
     <table>
         <thead>
             <tr>
                 <th>#</th>
-                <th>Book Title</th>
-                <th>Member</th>
-                <th>Borrowed</th>
-                <th>Due Date</th>
+<th>Item Name</th>
+                <th>Reporter</th>
+                <th>Reported</th>
+                <th>Claimed</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -36,10 +36,10 @@
             @forelse($records as $r)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $r->book->title }}</td>
-                <td>{{ $r->member->name }}</td>
-                <td>{{ $r->borrowed_at->format('M d, Y') }}</td>
-                <td>{{ $r->due_date->format('M d, Y') }}</td>
+<td>{{ $r->lostItem->item_name }}</td>
+                <td>{{ $r->reporter->name }}</td>
+                <td>{{ $r->reported_date->format('M d, Y') }}</td>
+                <td>{{ $r->claimed_date ? $r->claimed_date->format('M d, Y') : '—' }}</td>
                 <td class="status-{{ $r->status }}">{{ ucfirst($r->status) }}</td>
             </tr>
             @empty
