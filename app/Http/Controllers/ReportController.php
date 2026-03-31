@@ -17,7 +17,7 @@ class ReportController extends Controller
         $records = ClaimRecord::with(['lostItem', 'reporter'])->latest()->get();
 
         return Pdf::view('reports.pdf', compact('records'))
-                   ->name('borrow-report.pdf')
+->name('claim-report.pdf')
                    ->download();
     }
 }

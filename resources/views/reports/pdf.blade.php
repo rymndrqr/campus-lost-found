@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Borrow Report</title>
+    <title>Claim Report</title>
     <style>
         body { font-family: Arial, sans-serif; font-size: 12px; color: #333; }
         h2 { text-align: center; color: #1e293b; margin-bottom: 4px; }
@@ -18,8 +18,8 @@
     </style>
 </head>
 <body>
-<h2>🔍 Campus Lost & Found System</h2>
-    <div class="subtitle">Borrow Records Report — Generated {{ now()->format('F d, Y') }}</div>
+<h2>Campus Lost & Found System</h2>
+    <div class="subtitle">Claim Records Report — {{ now()->format('F d, Y') }}</div>
 
     <table>
         <thead>
@@ -48,6 +48,6 @@
         </tbody>
     </table>
 
-    <div class="footer">Total Records: {{ $records->count() }} | Library Lending System</div>
+    <div class="footer">Total Records: {{ $records->count() }} | Lost & Found System</div>
 </body>
 </html>

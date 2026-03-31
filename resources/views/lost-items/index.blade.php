@@ -1,15 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4>🔍 Lost Items</h4>
-    <a href="{{ route('lost-items.create') }}" class="btn btn-primary">+ Report Lost Item</a>
-</div>
-<div class="card">
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr><th>Item</th><th>Description</th><th>Category</th><th>Location</th><th>Date Found</th><th>Status</th><th>Actions</th></tr>
-            </thead>
+<h4>Lost Items</h4>
+<p><a href="{{ route('lost-items.create') }}" class="btn btn-primary btn-sm">+ New</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Item</th><th>Description</th><th>Category</th><th>Location</th><th>Date</th><th>Status</th><th></th></tr>
+    </thead>
             <tbody>
                 @forelse($lostItems as $item)
                 <tr>

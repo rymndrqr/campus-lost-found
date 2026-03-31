@@ -1,15 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4>👤 Reporters</h4>
-    <a href="{{ route('reporters.create') }}" class="btn btn-primary">+ Add Reporter</a>
-</div>
-<div class="card">
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr><th>Name</th><th>Email</th><th>Phone</th><th>Dorm</th><th>Actions</th></tr>
-            </thead>
+<h4>Reporters</h4>
+<p><a href="{{ route('reporters.create') }}" class="btn btn-primary btn-sm">+ New</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Name</th><th>Email</th><th>Phone</th><th>Room</th><th></th></tr>
+    </thead>
             <tbody>
                 @forelse($reporters as $reporter)
                 <tr>

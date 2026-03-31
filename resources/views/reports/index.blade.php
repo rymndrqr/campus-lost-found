@@ -1,16 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-<h4>📄 Claim Report</h4>
-    <a href="{{ route('reports.pdf') }}" class="btn btn-danger">
-        <i class="bi bi-file-earmark-pdf"></i> Download PDF
-    </a>
-</div>
-<div class="card">
-    <div class="card-body p-0">
-        <table class="table mb-0">
-            <thead class="table-dark">
-<th>Item Name</th><th>Reporter</th><th>Claimant</th><th>Reported</th><th>Claimed</th><th>Status</th></tr>
+<h4>Reports</h4>
+<p><a href="{{ route('reports.pdf') }}" class="btn btn-secondary btn-sm">PDF</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>#</th><th>Item</th><th>Reporter</th><th>Date</th><th>Status</th></tr>
+    </thead>
             </thead>
             <tbody>
                 @forelse($records as $r)
@@ -18,11 +13,10 @@
                     <td>{{ $loop->iteration }}</td>
 <td>{{ $r->lostItem->item_name }}</td>
 <td>{{ $r->reporter->name }}</td>
-                    <td>{{ $r->borrowed_at->format('M d, Y') }}</td>
-                    <td>{{ $r->due_date->format('M d, Y') }}</td>
-                    <td>{{ $r->returned_at ? $r->returned_at->format('M d, Y') : '—' }}</td>
+                    <td>{{ $r->reported_date ? $r->reported_date->format('M d, Y') : '—' }}</td>
+                    <td>{{ $r->claimed_date ? $r->claimed_date->format('M d, Y') : '—' }}</td>
                     <td>
-                        <span class="badge bg-{{ $r->status === 'returned' ? 'success' : ($r->status === 'overdue' ? 'danger' : 'warning text-dark') }}">
+                        <span class="badge bg-{{ $r->status === 'collected' ? 'success' : 'info' }}">
                             {{ ucfirst($r->status) }}
                         </span>
                     </td>

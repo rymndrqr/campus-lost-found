@@ -1,67 +1,37 @@
 @extends('layouts.app')
 @section('content')
-<h4 class="mb-4">📊 Campus Lost & Found Dashboard</h4>
+<h4>Dashboard</h4>
+<p><a href="{{ route('reports.index') }}" class="btn btn-secondary btn-sm">Reports</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Stat</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Total Lost Items</td><td class="fw-bold">{{ $totalLostItems }}</td></tr>
+        <tr><td>Total Reporters</td><td class="fw-bold">{{ $totalReporters }}</td></tr>
+        <tr><td>Unclaimed Items</td><td class="fw-bold">{{ $unclaimedCount }}</td></tr>
+        <tr><td>Pending Claims</td><td class="fw-bold">{{ $pendingClaims }}</td></tr>
+    </tbody>
+</table>
 
-<div class="row g-3 mb-4">
-    <div class="col-md-3">
-        <div class="card text-white bg-primary">
-            <div class="card-body">
-                <h6>Total Lost Items</h6>
-                <h2>{{ $totalLostItems }}</h2>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-success">
-            <div class="card-body">
-                <h6>Total Reporters</h6>
-                <h2>{{ $totalReporters }}</h2>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-warning">
-            <div class="card-body">
-                <h6>Unclaimed Items</h6>
-                <h2>{{ $unclaimedCount }}</h2>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-danger">
-            <div class="card-body">
-                <h6>Pending Claims</h6>
-                <h2>{{ $pendingClaims }}</h2>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header"><strong>Recent Claims</strong></div>
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr><th>#</th><th>Item</th><th>Reporter</th><th>Reported</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-                @forelse($recentClaims as $c)
-                <tr>
-                    <td>{{ $c->id }}</td>
-                    <td>{{ $c->lostItem->item_name ?? 'N/A' }}</td>
-                    <td>{{ $c->reporter->name ?? 'N/A' }}</td>
-                    <td>{{ $c->reported_date ? $c->reported_date->format('M d, Y') : 'N/A' }}</td>
-                    <td>
-                        <span class="badge bg-{{ $c->status === 'collected' ? 'success' : ($c->status === 'claimed' ? 'warning text-dark' : 'info') }}">
-                            {{ ucfirst($c->status) }}
-                        </span>
-                    </td>
-                </tr>
-                @empty
-                    <tr><td colspan="5" class="text-center text-muted">No claims yet.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-</div>
+<h5 class="mt-5">Recent Claims</h5>
+<table class="table table-striped">
+    <thead>
+        <tr><th>#</th><th>Item</th><th>Reporter</th><th>Date</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+        @forelse($recentClaims as $c)
+        <tr>
+            <td>{{ $c->id }}</td>
+            <td>{{ $c->lostItem->item_name ?? 'N/A' }}</td>
+            <td>{{ $c->reporter->name ?? 'N/A' }}</td>
+            <td>{{ $c->reported_date ? $c->reported_date->format('M d, Y') : 'N/A' }}</td>
+            <td><span class="badge {{ $c->status === 'collected' ? 'bg-success' : 'bg-secondary' }}">{{ ucfirst($c->status) }}</span></td>
+        </tr>
+        @empty
+        <tr><td colspan="5" class="text-center text-muted">No claims.</td></tr>
+        @endforelse
+    </tbody>
+</table>
 @endsection
+

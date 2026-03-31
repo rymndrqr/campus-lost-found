@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h4 class="mb-4">Report New Lost Item</h4>
-<div class="card" style="max-width:600px;">
+<div class="card">
     <div class="card-body">
         <form action="{{ route('lost-items.store') }}" method="POST">
             @csrf
@@ -30,9 +30,10 @@
                 <input type="date" name="date_found" class="form-control @error('date_found') is-invalid @enderror" value="{{ old('date_found', date('Y-m-d')) }}">
                 @error('date_found') <div class="invalid-feedback">{{ $message }}</div> @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Report Item</button>
-            <a href="{{ route('lost-items.index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route('lost-items.index') }}" class="btn btn-secondary ms-2">Cancel</a>
         </form>
     </div>
 </div>
 @endsection
+

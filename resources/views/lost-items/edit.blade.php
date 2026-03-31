@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h4 class="mb-4">Edit Lost Item</h4>
-<div class="card" style="max-width:600px;">
+<div class="card">
     <div class="card-body">
         <form action="{{ route('lost-items.update', $lostItem) }}" method="POST">
             @csrf @method('PUT')
@@ -25,9 +25,10 @@
                 <label class="form-label">Date Found</label>
                 <input type="date" name="date_found" class="form-control" value="{{ old('date_found', $lostItem->date_found) }}">
             </div>
-            <button type="submit" class="btn btn-primary">Update Item</button>
-            <a href="{{ route('lost-items.index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route('lost-items.index') }}" class="btn btn-secondary ms-2">Cancel</a>
         </form>
     </div>
 </div>
 @endsection
+

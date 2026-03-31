@@ -1,15 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h4>✅ Claim Records</h4>
-    <a href="{{ route('claims.create') }}" class="btn btn-primary">+ New Claim</a>
-</div>
-<div class="card">
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr><th>#</th><th>Item</th><th>Reporter</th><th>Claimant</th><th>Reported</th><th>Status</th><th>Action</th></tr>
-            </thead>
+<h4>Claims</h4>
+<p><a href="{{ route('claims.create') }}" class="btn btn-primary btn-sm">+ New</a></p>
+<table class="table table-striped">
+    <thead>
+        <tr><th>#</th><th>Item</th><th>Reporter</th><th>Claimant</th><th>Date</th><th>Status</th><th></th></tr>
+    </thead>
             <tbody>
                 @forelse($claims as $c)
                 <tr>
